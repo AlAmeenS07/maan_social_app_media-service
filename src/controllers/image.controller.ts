@@ -18,7 +18,7 @@ export class ImageController {
       const userId = req.headers["x-user-id"] as string;
 
       if (!userId) {
-        errorResponse(messages.USER_NOT_FOUND, statusCodes.UNAUTHORIZED);
+        return errorResponse(messages.USER_NOT_FOUND, statusCodes.UNAUTHORIZED);
       }
 
       const data = await this._mediaService.generateImageUploadUrl(fileName, contentType, userId);
@@ -31,7 +31,7 @@ export class ImageController {
       const key = req.query.key as string;
 
       if (!key) {
-        errorResponse(messages.KEY_REQUIRED, statusCodes.BAD_REQUEST);
+        return errorResponse(messages.KEY_REQUIRED, statusCodes.BAD_REQUEST);
       }
 
       const url = await this._mediaService.generateImageViewUrl(key);

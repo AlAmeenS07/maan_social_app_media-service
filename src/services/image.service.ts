@@ -3,8 +3,7 @@ import crypto from "crypto";
 import { PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { s3 } from "../config/s3";
-import { ALLOWED_MIME_TYPES, AVATAR_FOLDER, SIGNED_UPLOAD_URL_EXPIRY, SIGNED_VIEW_URL_EXPIRY, statusCodes, } from "../utils/constants";
-import { errorResponse } from "../utils/response.handle";
+import { AVATAR_FOLDER, SIGNED_UPLOAD_URL_EXPIRY, SIGNED_VIEW_URL_EXPIRY, statusCodes, } from "../utils/constants";
 import { IImageService } from "./interface/image.service.interface";
 import { SignedUploadResponse } from "../types/media.types";
 
@@ -12,10 +11,6 @@ import { SignedUploadResponse } from "../types/media.types";
 export class ImageService implements IImageService {
 
     async generateImageUploadUrl(fileName: string, contentType: string, userId: string) : Promise<SignedUploadResponse>{
-
-        if (!ALLOWED_MIME_TYPES.includes(contentType)) {
-            errorResponse("Invalid file type", statusCodes.BAD_REQUEST);
-        }
 
         const ext = fileName.split(".").pop();
 

@@ -8,13 +8,7 @@ export enum statusCodes{
 }
 
 
-export const ALLOWED_MIME_TYPES = [
-  "image/jpeg",
-  "image/png",
-  "image/webp",
-];
-
-export const SIGNED_UPLOAD_URL_EXPIRY = 60;
+export const SIGNED_UPLOAD_URL_EXPIRY = 300;
 
 export const SIGNED_VIEW_URL_EXPIRY = 3600;
 
