@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
   res.send("Media Service Running...");
 });
 
-app.use("/api/v1/image", imageRouter);
+app.use(process.env.API_IMAGE_ROUTE as string || "/api/v1/image", imageRouter);
 
 app.use(errorHandler)
 
