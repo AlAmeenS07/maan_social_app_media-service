@@ -3,7 +3,7 @@ import crypto from "crypto";
 import { PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { s3 } from "../config/s3";
-import { AVATAR_FOLDER, SIGNED_UPLOAD_URL_EXPIRY, SIGNED_VIEW_URL_EXPIRY, statusCodes, } from "../utils/constants";
+import { AVATAR_FOLDER, SIGNED_UPLOAD_URL_EXPIRY, SIGNED_VIEW_URL_EXPIRY, } from "../utils/constants";
 import { IImageService } from "./interface/image.service.interface";
 import { SignedUploadResponse } from "../types/media.types";
 
