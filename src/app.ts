@@ -1,19 +1,24 @@
 import express from "express";
-import cors from "cors";
+// import cors from "cors";
 import dotenv from "dotenv";
+import { errorHandler } from "./middlewares/app.middleware";
+import imageRouter from "./routes/image.routes";
 
 dotenv.config();
 
 const app = express();
-
-app.use(cors());
-app.use(express.json());
-
 const PORT = process.env.PORT || 5002;
+
+// app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Media Service Running...");
 });
+
+app.use(process.env.API_IMAGE_ROUTE as string || "/api/v1/image", imageRouter);
+
+app.use(errorHandler)
 
 app.listen(PORT, () => {
   console.log(`Media Service running on http://localhost:${PORT}`);
