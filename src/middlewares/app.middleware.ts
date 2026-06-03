@@ -1,6 +1,7 @@
 
 import { NextFunction, Request, Response } from "express";
-import { statusCodes } from "../utils/constants";
+import { messages, statusCodes } from "../utils/constants";
+import { logger } from "../config/logger";
 
 
 export class AppError extends Error {
@@ -14,8 +15,16 @@ export class AppError extends Error {
   }
 }
 
-export const errorHandler = (err : AppError, req : Request, res : Response, _next : NextFunction) => {
-  console.error("ERROR:", err);
+export const errorHandler = (err: AppError, req: Request, res: Response, _next: NextFunction) => {
+  logger.error(messages.REQUEST_FAILED, {
+    requestId: req.headers["x-request-id"],
+    userId: req.headers["x-user-id"] || null,
+    method: req.method,
+    route: req.originalUrl,
+    error: err.message,
+    stack: err.stack,
+    service: messages.MEDIA_SERVICE
+  });
 
   const statusCode = err.statusCode || statusCodes.INTERNAL_SERVER_ERROR;
 

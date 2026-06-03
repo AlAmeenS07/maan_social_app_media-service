@@ -19,5 +19,8 @@ export const  messages = {
   USER_NOT_FOUND : "User not found",
   UPLOAD_URL_GENERATED : "Upload url generated successfully",
   KEY_REQUIRED : "Key is required",
-  VIEW_URL_GENERATED : "View url generated successfully"
+  VIEW_URL_GENERATED : "View url generated successfully",
+  REQUEST_COMPLETED : "REQUEST_COMPLETED",
+  REQUEST_FAILED : "REQUEST_FAILED",
+  MEDIA_SERVICE : "media-service"
 }

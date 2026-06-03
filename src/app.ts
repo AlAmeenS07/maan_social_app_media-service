@@ -5,6 +5,7 @@ import { errorHandler } from "./middlewares/app.middleware";
 import imageRouter from "./routes/image.routes";
 import { metricsMiddleware } from "./middlewares/metrics.middleware";
 import register from "./config/prom.client";
+import { requestLogger } from "./middlewares/req.logger.middleware";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ const PORT = process.env.PORT || 5002;
 // app.use(cors());
 app.use(express.json());
 
+app.use(requestLogger)
 app.use(metricsMiddleware)
 
 app.get("/", (req, res) => {
